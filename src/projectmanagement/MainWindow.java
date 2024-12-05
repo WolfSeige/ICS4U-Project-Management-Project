@@ -4,6 +4,7 @@ package projectmanagement;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -17,7 +18,8 @@ public class MainWindow extends javax.swing.JFrame {
     public static void readNotes() {
         try {
             String note = "";
-            Scanner s = new Scanner(f);
+            InputStream in = MainWindow.class.getResourceAsStream("notes");
+            Scanner s = new Scanner(in);
             while (s.hasNextLine()) { //will loop until the end of the file, then stop
                 String nextLine = s.nextLine();
                 while (!nextLine.equals("")) {
@@ -27,7 +29,7 @@ public class MainWindow extends javax.swing.JFrame {
                 notes.add(note);
                 note = "";
             }
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             System.out.println(e);
         }  
     }
