@@ -15,26 +15,23 @@ Was the client happy with the finished product?
 ------THE SOFTWARE DEVELOPMENT PROCESS------
 Creating high-quality software involves organization, planning and utilizing various diagrammatic conventions 
 Computer scientists have created a view of the software development process known as the ‘software development life cycle’ (SDLC) 
+The cost of developing software is not spread equally over the phases.
+Maintenance takes 68%, integration, implementation, design & analysis each 8%
 
 ------MISTAKES IN THE SOFTWARE DEVELOPMENT PROCESS------
 Mistakes found early in the SDLC are much less expensive to correct than those found later.
 A mistake made in one phase often requires the developer to backup and redo some of the work in the previous phase.
 
-------COST OF MISTAKES IN THE SOFTWARE DEVELOPMENT PROCESS------
-The cost of developing software is not spread equally over the phases.
-Maintenance 68%, integration, implementation, design & analysis each 8%
-
 ------THE WATERFALL MODEL------
 It was developed by Dr Winston Royce in 1970 based on his experience developing software for spacecraft mission planning
 A mistake made in one phase often requires the developer to backup and redo some of the work in the previous phase
-
-------PHASES OF THE WATERFALL MODEL------
-Problem Statement
-Analysis 
-Design 
-Implementation 
-Integration /Test
-Maintenance  
+There are 6 phases in the Waterfall Model:
+- Problem Statement
+- Analysis 
+- Design 
+- Implementation 
+- Integration /Test
+- Maintenance  
 
 ------PROJECT MANAGEMENT TOOLS------
 Gantt Chart

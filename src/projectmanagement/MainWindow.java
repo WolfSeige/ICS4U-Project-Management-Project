@@ -76,7 +76,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        boxTopics.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select a topic to review", "What is a System?", "People involved in a System", "How to measure success?", "The Software Development Process", "Mistakes in the Software Development Process", "Cost of Mistakes in the Software Development Process", "The Waterfall Model", "Phases of the Waterfall Model", "Project Management Tools", "Gantt Chart", "UML" }));
+        boxTopics.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select a topic to review", "What is a System?", "People involved in a System", "How to measure success?", "The Software Development Process", "Mistakes in the Software Development Process", "The Waterfall Model", "Project Management Tools", "Gantt Chart", "UML" }));
         boxTopics.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boxTopicsActionPerformed(evt);
@@ -183,18 +183,14 @@ public class MainWindow extends javax.swing.JFrame {
             txtNotes.setText(notes.get(3));
         }else if (selectedItem.equals("Mistakes in the Software Development Process")) {
             txtNotes.setText(notes.get(4));
-        }else if (selectedItem.equals("Cost of Mistakes in the Software Development Process")) {
-            txtNotes.setText(notes.get(5));
         }else if (selectedItem.equals("The Waterfall Model")) {
-            txtNotes.setText(notes.get(6));
-        }else if (selectedItem.equals("Phases of the Waterfall Model")) {
-            txtNotes.setText(notes.get(7));
+            txtNotes.setText(notes.get(5));
         }else if (selectedItem.equals("Project Management Tools")) {
-            txtNotes.setText(notes.get(8));
+            txtNotes.setText(notes.get(6));
         }else if (selectedItem.equals("Gantt Chart")) {
-            txtNotes.setText(notes.get(9));
+            txtNotes.setText(notes.get(7));
         }else if (selectedItem.equals("UML")) {
-            txtNotes.setText(notes.get(10));
+            txtNotes.setText(notes.get(8));
         }
     }//GEN-LAST:event_boxTopicsActionPerformed
 

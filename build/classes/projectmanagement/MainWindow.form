@@ -144,19 +144,17 @@
     <Component class="javax.swing.JComboBox" name="boxTopics">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="12">
+          <StringArray count="10">
             <StringItem index="0" value="Select a topic to review"/>
             <StringItem index="1" value="What is a System?"/>
             <StringItem index="2" value="People involved in a System"/>
             <StringItem index="3" value="How to measure success?"/>
             <StringItem index="4" value="The Software Development Process"/>
             <StringItem index="5" value="Mistakes in the Software Development Process"/>
-            <StringItem index="6" value="Cost of Mistakes in the Software Development Process"/>
-            <StringItem index="7" value="The Waterfall Model"/>
-            <StringItem index="8" value="Phases of the Waterfall Model"/>
-            <StringItem index="9" value="Project Management Tools"/>
-            <StringItem index="10" value="Gantt Chart"/>
-            <StringItem index="11" value="UML"/>
+            <StringItem index="6" value="The Waterfall Model"/>
+            <StringItem index="7" value="Project Management Tools"/>
+            <StringItem index="8" value="Gantt Chart"/>
+            <StringItem index="9" value="UML"/>
           </StringArray>
         </Property>
       </Properties>
