@@ -231,6 +231,10 @@ public class MainWindow extends javax.swing.JFrame {
                 new MainWindow().setVisible(true);
             }
         });
+        //read the file and store the questions into the questionList array list
+        SecondWindow.readFile();
+        
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
