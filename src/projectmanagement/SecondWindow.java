@@ -9,19 +9,17 @@ import java.util.Scanner;
 
 public class SecondWindow extends javax.swing.JFrame {
     
-    private ArrayList<String> questionList = new ArrayList();
-    private ArrayList<String> optionAList = new ArrayList();
-    private ArrayList<String> optionBList = new ArrayList();
-    private ArrayList<String> optionCList = new ArrayList();
-    private ArrayList<String> optionDList = new ArrayList();
-    private ArrayList<String> answerList = new ArrayList();
-    private ArrayList<Questions> questions = new ArrayList();
+    //private ArrayList<String> questionList = new ArrayList();
+    //private ArrayList<String> optionAList = new ArrayList();
+    //private ArrayList<String> optionBList = new ArrayList();
+    //private ArrayList<String> optionCList = new ArrayList();
+    //private ArrayList<String> optionDList = new ArrayList();
+    //private ArrayList<String> answerList = new ArrayList();
+    private ArrayList<Question> questionList = new ArrayList();
     
     MainWindow firstWindow;
     
-    /**
-     * Creates new form NewJFrame1
-     */
+    
     public SecondWindow(MainWindow m) {
         initComponents();
         firstWindow = m;
@@ -32,20 +30,30 @@ public class SecondWindow extends javax.swing.JFrame {
         try {
             File file = new File("path");
             Scanner scanner = new Scanner(file);
+            Question q = new Question();
             while (scanner.hasNext()) {
-                questionList.add(scanner.nextLine());
-                optionAList.add(scanner.nextLine());
-                optionBList.add(scanner.nextLine());
-                optionCList.add(scanner.nextLine());
-                optionDList.add(scanner.nextLine());
-                answerList.add(scanner.nextLine());
+                q.setQuestion(scanner.nextLine());
+                q.setOptionA(scanner.nextLine());
+                q.setOptionB(scanner.nextLine());
+                q.setOptionC(scanner.nextLine());
+                q.setOptionD(scanner.nextLine());
+                q.setAnswer(scanner.nextLine());
+                questionList.add(q);
+                //questionList.add(scanner.nextLine());
+                //optionAList.add(scanner.nextLine());
+                //optionBList.add(scanner.nextLine());
+                //optionCList.add(scanner.nextLine());
+                //optionDList.add(scanner.nextLine());
+                //answerList.add(scanner.nextLine());
             }
+            /*
             for (int i = 0; i < questionList.size(); i++) {
-                Questions tempQuestion
-                        = new Questions(questionList.get(i - 1), optionAList.get(i - 1), optionBList.get(i - 1),
+                Question tempQuestion
+                        = new Question(questionList.get(i - 1), optionAList.get(i - 1), optionBList.get(i - 1),
                                 optionCList.get(i - 1), optionDList.get(i - 1), answerList.get(i - 1));
                 questions.add(i - 1, tempQuestion);
             }
+            */
         } catch (FileNotFoundException e) {
             System.out.println("Error" + e);
         }
