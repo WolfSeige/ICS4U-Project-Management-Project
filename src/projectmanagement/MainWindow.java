@@ -162,6 +162,11 @@ public class MainWindow extends javax.swing.JFrame {
         initComponents();
     }
     
+    public MainWindow(SecondWindow m) {
+        initComponents();
+        otherWindow = m;
+    }
+    
     //quiz button - when pressed will direct to the quiz window (secondWindow)
     private void btnQuizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuizActionPerformed
         //check if the second window has already been created

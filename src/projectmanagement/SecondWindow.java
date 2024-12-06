@@ -21,6 +21,7 @@ public class SecondWindow extends javax.swing.JFrame {
     private String btnCText = questionList.get(0).getOptionC();
     private String btnDText = questionList.get(0).getOptionD();
     
+    private MainWindow otherWindow;
     MainWindow firstWindow;
     public SecondWindow(MainWindow m) {
         initComponents();
@@ -208,10 +209,19 @@ public class SecondWindow extends javax.swing.JFrame {
             } 
         } else if (qNum >= questionList.size()) { //when the user has finished all questions and clicked "Submit!",
             calcScore();
+            //TO DO: DISPLAY FEEDBACK
+            
             //show the score (this is used to debug)
             JOptionPane.showMessageDialog(null, score);
             //TO DO: SHOW THE RESULTS & FEEDBACK
-            //TO DO: CLOSE THIS WINDOW AND GO BACK TO THE NOTES WINDOW
+            //check if the first window has already been created
+            if (firstWindow == null) {
+                firstWindow = new MainWindow(this);
+            }
+            //set the other window to be visible
+            firstWindow.setVisible(true);
+            //hide this window
+            this.setVisible(false);
         }
     }//GEN-LAST:event_btnDoneActionPerformed
 
