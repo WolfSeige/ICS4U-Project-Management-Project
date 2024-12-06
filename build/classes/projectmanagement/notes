@@ -1,30 +1,36 @@
 ------WHAT IS A SYSTEM?------
-A system is a combination of software and sometimes hardware that provides a solution for a question.
+A system is a combination of software and sometimes hardware that provides a 
+solution for a question.
 
 ------PEOPLE INVOLVED IN A SYSTEM------
-The client, analysts, designers and developers, testers, users and other jobs such as lawyers, communications officers, specialists and so on.
+The client, analysts, designers and developers, testers, users and other jobs 
+such as lawyers, communications officers, specialists and so on.
 
 ------HOW TO MEASURE SUCCESS?------
 Answer the following questions:
-Does the project solve what it was meant to solve?
-Is it easy to maintain and administer?
-Is there a successful support system in place for the client?
-Was it delivered on time and ready to go?
-Was the client happy with the finished product?
+- Does the project solve what it was meant to solve?
+- Is it easy to maintain and administer?
+- Is there a successful support system in place for the client?
+- Was it delivered on time and ready to go?
+- Was the client happy with the finished product?
 
 ------THE SOFTWARE DEVELOPMENT PROCESS------
-Creating high-quality software involves organization, planning and utilizing various diagrammatic conventions 
-Computer scientists have created a view of the software development process known as the ‘software development life cycle’ (SDLC) 
-The cost of developing software is not spread equally over the phases.
-Maintenance takes 68%, integration, implementation, design & analysis each 8%
+Creating high-quality software involves organization, planning and utilizing
+various diagrammatic conventions; 
+Computer scientists have created a view of the software development process 
+known as the ‘software development life cycle’ (SDLC) 
+The cost of developing software is not spread equally over the phases:
+Maintenance takes 68%, integration, implementation, design & analysis each 8%.
 
 ------MISTAKES IN THE SOFTWARE DEVELOPMENT PROCESS------
-Mistakes found early in the SDLC are much less expensive to correct than those found later.
-A mistake made in one phase often requires the developer to backup and redo some of the work in the previous phase.
+Mistakes found early in the SDLC are much less expensive to correct than 
+those found later.
+A mistake made in one phase often requires the developer to backup and redo 
+some of the work in the previous phase.
 
 ------THE WATERFALL MODEL------
-It was developed by Dr Winston Royce in 1970 based on his experience developing software for spacecraft mission planning
-A mistake made in one phase often requires the developer to backup and redo some of the work in the previous phase
+It was developed by Dr Winston Royce in 1970 based on his experience 
+developing software for spacecraft mission planning.
 There are 6 phases in the Waterfall Model:
 - Problem Statement
 - Analysis 
@@ -34,23 +40,23 @@ There are 6 phases in the Waterfall Model:
 - Maintenance  
 
 ------PROJECT MANAGEMENT TOOLS------
-Gantt Chart
-UML
-Daily Log
-Weekly Reports
-Communication
-Microsoft Teams
-Slack
-Google Spaces
+- Gantt Chart
+- UML
+- Daily Log
+- Weekly Reports
+- Communication
+- Microsoft Teams
+- Slack
+- Google Spaces
 
 ------GANTT CHART------
-Developed by mechanical engineer Henry Gantt in the 1910’s
-Tool typically used by people working on a large project
-Helps project managers to visualize, schedule, and track scheduled as well as actual progress of projects.
+Developed by mechanical engineer Henry Gantt in the 1910’s and is typically 
+used by people working on a large project.
+It helps project managers to visualize, schedule, and track scheduled as well 
+as actual progress of projects.
 
 ------UML------
-Unified Modeling Language
-Visually specifies parts of a system
-Complex software designs are much more easily described through UML than textually
-UML can be complicated to learn, you are not required to use it for your projects
+Stands for Unified Modeling Language. It visually specifies parts of a system.
+Complex software designs are much more easily described through UML than 
+textually but it can be complicated to learn.
 

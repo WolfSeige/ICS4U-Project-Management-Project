@@ -16,6 +16,7 @@ public class SecondWindow extends javax.swing.JFrame {
     //keeps track of which question the user is on
     private int qNum = 0;
     
+    //Strings used to store the options of the last question
     private String btnAText = questionList.get(0).getOptionA();
     private String btnBText = questionList.get(0).getOptionB();
     private String btnCText = questionList.get(0).getOptionC();
@@ -68,33 +69,38 @@ public class SecondWindow extends javax.swing.JFrame {
     
     public void calcScore() {
         //check which option the user selected, then set the corresponding place in the array userAns to the option 
-            if (btnA.isSelected()) {
-                //userAns[qNum] = btnA.getText();
-                userAns[qNum] = btnAText;
-            } else if (btnB.isSelected()) {
-                //userAns[qNum] = btnB.getText();
-                userAns[qNum] = btnBText;
-            } else if (btnC.isSelected()) {
-                //userAns[qNum] = btnC.getText();
-                userAns[qNum] = btnCText;
-            } else if (btnD.isSelected()) {
-                //userAns[qNum] = btnD.getText();
-                userAns[qNum] = btnDText;
-            }
-            System.out.println("correct answer " + questionList.get(qNum - 1).getAnswer());
-            System.out.println("user answer " + userAns[qNum]);
-            System.out.println("num " + qNum);
-            
-            //WHY IS IT QNUM - 1??????
-            if (questionList.get(qNum - 1).getAnswer().equals(userAns[qNum])) {
-                //the score goes up
-                score++;
-            }
-            
-            btnAText = btnA.getText();
-            btnBText = btnB.getText();
-            btnCText = btnC.getText();
-            btnDText = btnD.getText();       
+        if (btnA.isSelected()) {
+            //userAns[qNum] = btnA.getText();
+            userAns[qNum] = btnAText;
+        } else if (btnB.isSelected()) {
+            //userAns[qNum] = btnB.getText();
+            userAns[qNum] = btnBText;
+        } else if (btnC.isSelected()) {
+            //userAns[qNum] = btnC.getText();
+            userAns[qNum] = btnCText;
+        } else if (btnD.isSelected()) {
+            //userAns[qNum] = btnD.getText();
+            userAns[qNum] = btnDText;
+        } 
+  
+        //System.out.println("correct answer " + questionList.get(qNum - 1).getAnswer());
+        //System.out.println("user answer " + userAns[qNum]);
+        //System.out.println("num " + qNum);
+
+        //WHY IS IT QNUM - 1??????
+        if (questionList.get(qNum - 1).getAnswer().equals(userAns[qNum])) {
+            //the score goes up
+            score++;
+        }
+
+        btnAText = btnA.getText();
+        btnBText = btnB.getText();
+        btnCText = btnC.getText();
+        btnDText = btnD.getText();       
+    }
+    
+    public void displayResults() {
+        //TO DO: DISPLAY FEEDBACK
     }
 
     
@@ -198,23 +204,28 @@ public class SecondWindow extends javax.swing.JFrame {
         //first make sure qNum is smaller than the # of questions (10) 
         //because if it's greater and we run the following code we'll get an outOfBounds error
         if (qNum < questionList.size()) {
-            //this is to display different text on the done button depending on what question the user is on
-            //if the user hasn't started, it displays "Start Quiz!"
-            //if the user is on questions 1 - 9, it displays "Next"
-            //on question 10 (the last question), displays "Submit!"
-            if (qNum == 0) {
+            if (qNum == 0) {//check if the quiz has just started yet
+                //set this button invisible so only the "next" button shows
                 btnDone.setVisible(false);
+                //display the first question
                 displayQuestion(qNum);
                 qNum++;
+                //set question and all options visible once the quiz starts
+                lblQuestion.setVisible(true);
+                btnA.setVisible(true);
+                btnB.setVisible(true);
+                btnC.setVisible(true);
+                btnD.setVisible(true);
             } 
         } else if (qNum >= questionList.size()) { //when the user has finished all questions and clicked "Submit!",
+            //calculate the last (10th) question's score
             calcScore();
-            //TO DO: DISPLAY FEEDBACK
             
             //show the score (this is used to debug)
             JOptionPane.showMessageDialog(null, score);
             //TO DO: SHOW THE RESULTS & FEEDBACK
-            //check if the first window has already been created
+            
+            //Go back to main window (I have no clue what I did, but it works so yay)            
             if (firstWindow == null) {
                 firstWindow = new MainWindow(this);
             }
@@ -222,6 +233,16 @@ public class SecondWindow extends javax.swing.JFrame {
             firstWindow.setVisible(true);
             //hide this window
             this.setVisible(false);
+            
+            //reset everything
+            btnDone.setText("Start Quiz!");
+            qNum = 0;
+            score = 0;
+            lblQuestion.setVisible(false);
+            btnA.setVisible(false);
+            btnB.setVisible(false);
+            btnC.setVisible(false);
+            btnD.setVisible(false);
         }
     }//GEN-LAST:event_btnDoneActionPerformed
 
@@ -231,19 +252,19 @@ public class SecondWindow extends javax.swing.JFrame {
         if (qNum < questionList.size()) {
             //invoke the displayQuestion method and display the current question
             displayQuestion(qNum);
-            calcScore();
-
-            //check if the user's answer is equal to the question's answer
-            //FOR SOME REASON THERE'S A BUG, EVEN IF WE DID THE ENTIRE QUIZ CORRECTLY WE WOULD ONLY GET 2 POINTS
+            //update the current score
+            calcScore(); 
+            
+            //check if the user is on the last question - then display the other button and set it to say "Submit!"
             if (qNum == questionList.size() - 1) {
                 btnDone.setVisible(true);
                 btnDone.setText("Submit!");
             }
-            //show the score (this is used to debug)
-            System.out.println(score);
-        } 
-        qNum++;
+            //System.out.println(score);
+            qNum++;      
+        }
         
+        //clear all selections the user made when going into a new question
         buttonGroup1.clearSelection();
     }//GEN-LAST:event_btnNextActionPerformed
     
