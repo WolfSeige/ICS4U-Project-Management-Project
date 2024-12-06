@@ -8,13 +8,18 @@ import javax.swing.JOptionPane;
 
 public class SecondWindow extends javax.swing.JFrame {
     //An array to store the user's answers
-    private static String[] userAns = new String[10];  
+    private static String[] userAns = new String[11];  
     //An array list to store the 10 Question objects
     private static ArrayList<Question> questionList = new ArrayList();
     //stores the user's scores
     private int score = 0;
     //keeps track of which question the user is on
     private int qNum = 0;
+    
+    private String btnAText = questionList.get(0).getOptionA();
+    private String btnBText = questionList.get(0).getOptionB();
+    private String btnCText = questionList.get(0).getOptionC();
+    private String btnDText = questionList.get(0).getOptionD();
     
     MainWindow firstWindow;
     public SecondWindow(MainWindow m) {
@@ -59,6 +64,37 @@ public class SecondWindow extends javax.swing.JFrame {
         btnC.setText(questionList.get(i).getOptionC());
         btnD.setText(questionList.get(i).getOptionD());
     }
+    
+    public void calcScore() {
+        //check which option the user selected, then set the corresponding place in the array userAns to the option 
+            if (btnA.isSelected()) {
+                //userAns[qNum] = btnA.getText();
+                userAns[qNum] = btnAText;
+            } else if (btnB.isSelected()) {
+                //userAns[qNum] = btnB.getText();
+                userAns[qNum] = btnBText;
+            } else if (btnC.isSelected()) {
+                //userAns[qNum] = btnC.getText();
+                userAns[qNum] = btnCText;
+            } else if (btnD.isSelected()) {
+                //userAns[qNum] = btnD.getText();
+                userAns[qNum] = btnDText;
+            }
+            System.out.println("correct answer " + questionList.get(qNum - 1).getAnswer());
+            System.out.println("user answer " + userAns[qNum]);
+            System.out.println("num " + qNum);
+            
+            //WHY IS IT QNUM - 1??????
+            if (questionList.get(qNum - 1).getAnswer().equals(userAns[qNum])) {
+                //the score goes up
+                score++;
+            }
+            
+            btnAText = btnA.getText();
+            btnBText = btnB.getText();
+            btnCText = btnC.getText();
+            btnDText = btnD.getText();       
+    }
 
     
     @SuppressWarnings("unchecked")
@@ -81,6 +117,7 @@ public class SecondWindow extends javax.swing.JFrame {
         btnC = new javax.swing.JRadioButton();
         btnD = new javax.swing.JRadioButton();
         lblQuestion = new javax.swing.JLabel();
+        btnNext = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,18 +129,25 @@ public class SecondWindow extends javax.swing.JFrame {
         });
 
         buttonGroup1.add(btnA);
-        btnA.setText("jRadioButton1");
+        btnA.setText(" ");
 
         buttonGroup1.add(btnB);
-        btnB.setText("jRadioButton2");
+        btnB.setText(" ");
 
         buttonGroup1.add(btnC);
-        btnC.setText("jRadioButton3");
+        btnC.setText(" ");
 
         buttonGroup1.add(btnD);
-        btnD.setText("jRadioButton4");
+        btnD.setText(" ");
 
-        lblQuestion.setText("jLabel1");
+        lblQuestion.setText(" ");
+
+        btnNext.setText("Next");
+        btnNext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNextActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -112,80 +156,86 @@ public class SecondWindow extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(73, 73, 73)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnC)
                     .addComponent(lblQuestion)
-                    .addComponent(btnDone)
                     .addComponent(btnD)
                     .addComponent(btnB)
-                    .addComponent(btnC)
-                    .addComponent(btnA))
-                .addContainerGap(517, Short.MAX_VALUE))
+                    .addComponent(btnA)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnNext)
+                        .addGap(44, 44, 44)
+                        .addComponent(btnDone)))
+                .addContainerGap(415, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(49, 49, 49)
                 .addComponent(lblQuestion)
-                .addGap(38, 38, 38)
+                .addGap(48, 48, 48)
                 .addComponent(btnA)
                 .addGap(18, 18, 18)
                 .addComponent(btnB)
                 .addGap(18, 18, 18)
-                .addComponent(btnD)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addComponent(btnC)
-                .addGap(39, 39, 39)
-                .addComponent(btnDone)
-                .addGap(43, 43, 43))
+                .addGap(18, 18, 18)
+                .addComponent(btnD)
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnNext)
+                    .addComponent(btnDone))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
     //what happens when the done button is pressed
     private void btnDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoneActionPerformed
+        
         //first make sure qNum is smaller than the # of questions (10) 
         //because if it's greater and we run the following code we'll get an outOfBounds error
         if (qNum < questionList.size()) {
-            //invoke the displayQuestion method and display the current question
-            displayQuestion(qNum);
-            //check which option the user selected, then set the corresponding place in the array userAns to the option 
-            //here we're setting it to btn.getText() because in the displayQuestion method we did btn.setText(questionList.getOption())
-            if (btnA.isSelected()) {
-                userAns[qNum] = btnA.getText();
-            } else if (btnB.isSelected()) {
-                userAns[qNum] = btnB.getText();
-            } else if (btnC.isSelected()) {
-                userAns[qNum] = btnC.getText();
-            } else if (btnD.isSelected()) {
-                userAns[qNum] = btnD.getText();
-            }
-            //check if the user's answer is equal to the question's answer
-            //FOR SOME REASON THERE'S A BUG, EVEN IF WE DID THE ENTIRE QUIZ CORRECTLY WE WOULD ONLY GET 2 POINTS
-            if (questionList.get(qNum).getAnswer().equals(userAns[qNum])) {
-                //the score goes up
-                score++;
-            }
-            //show the score (this is used to debug)
-            System.out.println(score);
-            
             //this is to display different text on the done button depending on what question the user is on
             //if the user hasn't started, it displays "Start Quiz!"
             //if the user is on questions 1 - 9, it displays "Next"
             //on question 10 (the last question), displays "Submit!"
-            if (qNum >= 0 && qNum < questionList.size() - 1) {
-                btnDone.setText("Next");
-            } else if (qNum == questionList.size() - 1) {
-                btnDone.setText("Submit!");
-            }
-            //on to the next question
-            qNum++;
+            if (qNum == 0) {
+                btnDone.setVisible(false);
+                displayQuestion(qNum);
+                qNum++;
+            } 
         } else if (qNum >= questionList.size()) { //when the user has finished all questions and clicked "Submit!",
+            calcScore();
             //show the score (this is used to debug)
             JOptionPane.showMessageDialog(null, score);
             //TO DO: SHOW THE RESULTS & FEEDBACK
             //TO DO: CLOSE THIS WINDOW AND GO BACK TO THE NOTES WINDOW
         }
     }//GEN-LAST:event_btnDoneActionPerformed
+
+    private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
+        //first make sure qNum is smaller than the # of questions (10) 
+        //because if it's greater and we run the following code we'll get an outOfBounds error
+        if (qNum < questionList.size()) {
+            //invoke the displayQuestion method and display the current question
+            displayQuestion(qNum);
+            calcScore();
+
+            //check if the user's answer is equal to the question's answer
+            //FOR SOME REASON THERE'S A BUG, EVEN IF WE DID THE ENTIRE QUIZ CORRECTLY WE WOULD ONLY GET 2 POINTS
+            if (qNum == questionList.size() - 1) {
+                btnDone.setVisible(true);
+                btnDone.setText("Submit!");
+            }
+            //show the score (this is used to debug)
+            System.out.println(score);
+        } 
+        qNum++;
+        
+        buttonGroup1.clearSelection();
+    }//GEN-LAST:event_btnNextActionPerformed
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -194,6 +244,7 @@ public class SecondWindow extends javax.swing.JFrame {
     private javax.swing.JRadioButton btnC;
     private javax.swing.JRadioButton btnD;
     private javax.swing.JButton btnDone;
+    private javax.swing.JButton btnNext;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup10;
     private javax.swing.ButtonGroup buttonGroup2;
