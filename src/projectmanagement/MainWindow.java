@@ -2,8 +2,6 @@
 //for study notes
 package projectmanagement;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -11,22 +9,47 @@ import java.util.Scanner;
 public class MainWindow extends javax.swing.JFrame {
     //the list of notes
     static ArrayList<String> notes = new ArrayList();
-    //file containing the notes
-    private static File f = new File("src/projectmanagement/notes");
     
     //use a scanner to scan through the notes file, storing them in the 'notes' array list
     public static void readNotes() {
         try {
+            //a placeholder String to store the current note
             String note = "";
+            //honestly I don't understand what this is, but it's on the classroom slides on JAR
+            //apparantly if we don't write it this way the JAR won't recognise the external txt files
             InputStream in = MainWindow.class.getResourceAsStream("notes");
             Scanner s = new Scanner(in);
+            
             while (s.hasNextLine()) { //will loop until the end of the file, then stop
+                //nextLine stores the String text on a line in the notes file
                 String nextLine = s.nextLine();
-                while (!nextLine.equals("")) {
+                while (!nextLine.equals("")) { //I used a blank line ("") to separate different notes - this while loop is checking if the next line of text still belongs to the same note
+                    /*
+                    e.g. for the below text:
+                    "------PEOPLE INVOLVED IN A SYSTEM------
+                    The client, analysts, designers and developers, testers, users and other jobs such as lawyers, communications officers, specialists and so on.
+
+                    ------HOW TO MEASURE SUCCESS?------
+                    Answer the following questions:
+                    Does the project solve what it was meant to solve?
+                    Is it easy to maintain and administer?
+                    Is there a successful support system in place for the client?
+                    Was it delivered on time and ready to go?
+                    Was the client happy with the finished product?"
+                    we can see that after the first line there is an empty line. This means that everything above the empty line belongs to one note (in this case, "people involved in a system"
+                    and everything below belongs to another (in this case, "how to measure success")
+                    When reaching an empty line the program will know that it's no longer on the former note
+                    */
+                    //In this case, add the line of text to the placeholder String
                     note += nextLine + "\n";  
+                    //and move on to the next line to check if it's still in the same note
                     nextLine = s.nextLine();
                 }
+                //reached an empty line (""), end the above while loop
+                //add the current note to the array list of notes
+                //e.g. we would add
                 notes.add(note);
+                //reset the placeholder String to its default value
                 note = "";
             }
         } catch (Exception e) {
