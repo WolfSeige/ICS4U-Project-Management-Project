@@ -17,9 +17,9 @@ public class SecondWindow extends javax.swing.JFrame {
     //An array list to store wrong answers
     public static ArrayList<String> wrongAns = new ArrayList();
     //stores the user's scores
-    public static int score = 0;
+    public  int score = 0;
     //keeps track of which question the user is on
-    public static int qNum = 0;
+    public int qNum = 0;
     //list of feedback
     public static String[] feedbackList = new String[10];
     
@@ -82,27 +82,20 @@ public class SecondWindow extends javax.swing.JFrame {
     public void calcScore() {
         //check which option the user selected, then set the corresponding place in the array userAns to the option 
         if (btnA.isSelected()) {
-            //userAns[qNum] = btnA.getText();
             userAns[qNum] = btnAText;
         } else if (btnB.isSelected()) {
-            //userAns[qNum] = btnB.getText();
             userAns[qNum] = btnBText;
         } else if (btnC.isSelected()) {
-            //userAns[qNum] = btnC.getText();
             userAns[qNum] = btnCText;
         } else if (btnD.isSelected()) {
-            //userAns[qNum] = btnD.getText();
             userAns[qNum] = btnDText;
         }
 
-        //System.out.println("correct answer " + questionList.get(qNum - 1).getAnswer());
-        //System.out.println("user answer " + userAns[qNum]);
-        //System.out.println("num " + qNum);
-        //WHY IS IT QNUM - 1??????
+        //check if user's answer is correct
         if (questionList.get(qNum - 1).getAnswer().equals(userAns[qNum])) {
             //the score goes up
             score++;
-        } else {
+        }else{
             wrongQ.add(questionList.get(qNum - 1));
             wrongAns.add(userAns[qNum]);
         }
@@ -110,7 +103,7 @@ public class SecondWindow extends javax.swing.JFrame {
         btnAText = btnA.getText();
         btnBText = btnB.getText();
         btnCText = btnC.getText();
-        btnDText = btnD.getText();
+        btnDText = btnD.getText();        
     }
     
     public String displayResults() {
@@ -247,6 +240,11 @@ public class SecondWindow extends javax.swing.JFrame {
                 btnB.setVisible(true);
                 btnC.setVisible(true);
                 btnD.setVisible(true);
+                
+                btnAText = questionList.get(0).getOptionA();
+                btnBText = questionList.get(0).getOptionB();
+                btnCText = questionList.get(0).getOptionC();
+                btnDText = questionList.get(0).getOptionD();
             } 
         } else if (qNum >= questionList.size()) { //when the user has finished all questions and clicked "Submit!",
             //calculate the last (10th) question's score
@@ -254,6 +252,7 @@ public class SecondWindow extends javax.swing.JFrame {
             
             //show the score (this is used to debug)
             JOptionPane.showMessageDialog(null, "Your score: "+score+"\n"+displayResults());
+            
             //TO DO: SHOW THE RESULTS & FEEDBACK
             
             //Go back to main window (I have no clue what I did, but it works so yay)            
@@ -273,9 +272,6 @@ public class SecondWindow extends javax.swing.JFrame {
 
             wrongAns.clear();  // Clear the wrongAns list
             wrongQ.clear();  // Clear the wrongQ list
-            
-            System.out.println(wrongAns.size());
-            System.out.println(wrongQ.size());
             
             lblQuestion.setVisible(false);
             btnA.setVisible(false);
@@ -299,7 +295,6 @@ public class SecondWindow extends javax.swing.JFrame {
                 btnDone.setVisible(true);
                 btnDone.setText("Submit!");
             }
-            //System.out.println(score);
             qNum++;      
         }
         

@@ -299,17 +299,6 @@ public class MainWindow extends javax.swing.JFrame {
         });
         //read the file and store the questions into the questionList array list
         SecondWindow.readFile();
-        //reset everything
-        SecondWindow.qNum = 0;
-        SecondWindow.score = 0;
-        Arrays.fill(SecondWindow.userAns, null);  // Reset userAns array
-
-        SecondWindow.wrongAns.clear();  // Clear the wrongAns list
-        SecondWindow.wrongQ.clear();  // Clear the wrongQ list
-
-        System.out.println(SecondWindow.wrongAns.size());
-        System.out.println(SecondWindow.wrongQ.size());
-        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
