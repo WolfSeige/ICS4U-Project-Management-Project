@@ -1,3 +1,14 @@
+//Afiya, Shasha, Stella 
+//2024.12.6
+//Project Management Project
+/*
+In a group (groupSize >= 2 && groupSize <= 3), you will be creating a Java program which will help your sister study for her SDLC test. 
+Your system must include points to study from, as well as a multiple choice quiz (10 questions) for practice, 
+which will be automatically graded and feedback given. These study notes and questions must be read from external files (so they can easily be updated). 
+You and your partner(s) will be using the stages of the SDLC to complete this project. 
+*/
+
+
 //THIS IS THE MAIN WINDOW 
 //for study notes
 package projectmanagement;
@@ -25,22 +36,6 @@ public class MainWindow extends javax.swing.JFrame {
                 //nextLine stores the String text on a line in the notes file
                 String nextLine = s.nextLine();
                 while (!nextLine.equals("")) { //I used a blank line ("") to separate different notes - this while loop is checking if the next line of text still belongs to the same note
-                    /*
-                    e.g. for the below text:
-                    "------PEOPLE INVOLVED IN A SYSTEM------
-                    The client, analysts, designers and developers, testers, users and other jobs such as lawyers, communications officers, specialists and so on.
-
-                    ------HOW TO MEASURE SUCCESS?------
-                    Answer the following questions:
-                    Does the project solve what it was meant to solve?
-                    Is it easy to maintain and administer?
-                    Is there a successful support system in place for the client?
-                    Was it delivered on time and ready to go?
-                    Was the client happy with the finished product?"
-                    we can see that after the first line there is an empty line. This means that everything above the empty line belongs to one note (in this case, "people involved in a system"
-                    and everything below belongs to another (in this case, "how to measure success")
-                    When reaching an empty line the program will know that it's no longer on the former note
-                    */
                     //In this case, add the line of text to the placeholder String
                     note += nextLine + "\n";  
                     //and move on to the next line to check if it's still in the same note

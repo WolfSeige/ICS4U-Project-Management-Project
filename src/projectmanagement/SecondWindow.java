@@ -1,3 +1,5 @@
+//SECOND WINDOW
+//for quiz
 package projectmanagement;
 
 import java.io.InputStream;
@@ -24,10 +26,10 @@ public class SecondWindow extends javax.swing.JFrame {
     public static String[] feedbackList = new String[10];
     
     //Strings used to store the options of the last question
-    private String btnAText = questionList.get(0).getOptionA();
-    private String btnBText = questionList.get(0).getOptionB();
-    private String btnCText = questionList.get(0).getOptionC();
-    private String btnDText = questionList.get(0).getOptionD();
+    private String btnAText;
+    private String btnBText;
+    private String btnCText;
+    private String btnDText;
     
     private MainWindow otherWindow;
     MainWindow firstWindow;
@@ -57,7 +59,6 @@ public class SecondWindow extends javax.swing.JFrame {
                 q.setAnswer(scanner.nextLine());
                 //add this Question object to the array list. Now it stores the question and its corresponding options and answer
                 questionList.add(q);
-                //and so it loops...
             }
             //go through feedback file and add to feedback list
             for (int i = 0; i < feedbackList.length; i++) {
@@ -96,10 +97,11 @@ public class SecondWindow extends javax.swing.JFrame {
             //the score goes up
             score++;
         }else{
+            //record the wrong question & wrong user's answer
             wrongQ.add(questionList.get(qNum - 1));
             wrongAns.add(userAns[qNum]);
         }
-
+  
         btnAText = btnA.getText();
         btnBText = btnB.getText();
         btnCText = btnC.getText();
@@ -119,7 +121,6 @@ public class SecondWindow extends javax.swing.JFrame {
                     ;
             }
         }
-
         return msg;
     }
 
@@ -222,7 +223,6 @@ public class SecondWindow extends javax.swing.JFrame {
     private void btnDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoneActionPerformed
  
         //first make sure qNum is smaller than the # of questions (10) 
-        //because if it's greater and we run the following code we'll get an outOfBounds error
         if (qNum < questionList.size()) {
             if (qNum == 0) {//check if the quiz has just started yet
                 //set this button invisible so only the "next" button shows
@@ -241,6 +241,7 @@ public class SecondWindow extends javax.swing.JFrame {
                 btnC.setVisible(true);
                 btnD.setVisible(true);
                 
+                //first question
                 btnAText = questionList.get(0).getOptionA();
                 btnBText = questionList.get(0).getOptionB();
                 btnCText = questionList.get(0).getOptionC();
@@ -268,10 +269,10 @@ public class SecondWindow extends javax.swing.JFrame {
             btnDone.setText("Start Quiz!");
             qNum = 0;
             score = 0;
-            Arrays.fill(userAns, null);  // Reset userAns array
+            Arrays.fill(userAns, null);  
 
-            wrongAns.clear();  // Clear the wrongAns list
-            wrongQ.clear();  // Clear the wrongQ list
+            wrongAns.clear(); 
+            wrongQ.clear();
             
             lblQuestion.setVisible(false);
             btnA.setVisible(false);
