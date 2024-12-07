@@ -1,58 +1,58 @@
-What is a system?
+1. What is a system?
 A) A group of people working together
 B) A combination of software and sometimes hardware that provides a solution for a question
 C) A tool used to track progress in a project
 D) A type of software only
 B) A combination of software and sometimes hardware that provides a solution for a question
-Which of the following is NOT typically involved in a system?
+2. Which of the following is NOT typically involved in a system?
 A) Analysts
 B) Testers
 C) Client
 D) Project supervisor
 D) Project supervisor
-Which question is NOT used to measure the success of a project?
+3. Which question is NOT used to measure the success of a project?
 A) What is the satisfaction rate of the client?
 B) Is there a successful support system in place for the client?
 C) Was the project delivered on time or delayed?
 D) Does the project line up with the market’s need?
 B) Is there a successful support system in place for the client?
-Which of the following is the correct order of phases in the Waterfall Model?
+4. Which of the following is the correct order of phases in the Waterfall Model?
 A) Analysis, Design, Implementation, Test, Integration, Maintenance
 B) Problem Statement, Analysis, Design, Implementation, Integration, Maintenance
 C) Implementation, Design, Integration, Test, Analysis, Maintenance
 D) Design, Implementation, Integration, Maintenance, Analysis, Problem Statement
 B) Problem Statement, Analysis, Design, Implementation, Integration, Maintenance
-Which phase of the Software Development Life Cycle (SDLC) has the highest cost?
+5. Which phase of the Software Development Life Cycle (SDLC) has the highest cost?
 A) Maintenance
 B) Design
 C) Implementation
 D) Analysis
 A) Maintenance
-Which project management tool helps track progress and visualize the schedule of a project?
+6. Which project management tool helps track progress and visualize the schedule of a project?
 A) Gantt Chart
 B) UML
 C) Slack
 D) Microsoft Teams
 A) Gantt Chart
-What does UML stand for?
+7. What does UML stand for?
 A) Unified Machine Learning
 B) Unified Modeling Language
 C) Universal Modeling Language
 D) Unstructured Modeling Language
 B) Unified Modeling Language
-What is UML used for?
+8. What is UML used for?
 A) Writing executable code for software designs
 B) Managing software development teams and resources
 C) Specifying complex parts of software designs visually
 D) Testing software applications for bugs and errors
 C) Specifying complex parts of software designs visually
-Which of the following tools is NOT used for project management?
+9. Which of the following tools is NOT used for project management?
 A) Microsoft Teams
 B) UML
 C) Gantt Chart
 D) User Manual
 D) User Manual
-Which SDLC phase focuses on coding the design blueprint?
+10. Which SDLC phase focuses on coding the design blueprint?
 A) Design
 B) Implementation
 C) Testing

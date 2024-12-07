@@ -2,19 +2,26 @@ package projectmanagement;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 
 public class SecondWindow extends javax.swing.JFrame {
     //An array to store the user's answers
-    private static String[] userAns = new String[11];  
+    public static String[] userAns = new String[11];
     //An array list to store the 10 Question objects
-    private static ArrayList<Question> questionList = new ArrayList();
+    public static ArrayList<Question> questionList = new ArrayList();
+    //An array list to store questions answered wrong
+    public static ArrayList<Question> wrongQ = new ArrayList();
+    //An array list to store wrong answers
+    public static ArrayList<String> wrongAns = new ArrayList();
     //stores the user's scores
-    private int score = 0;
+    public static int score = 0;
     //keeps track of which question the user is on
-    private int qNum = 0;
+    public static int qNum = 0;
+    //list of feedback
+    public static String[] feedbackList = new String[10];
     
     //Strings used to store the options of the last question
     private String btnAText = questionList.get(0).getOptionA();
@@ -33,8 +40,9 @@ public class SecondWindow extends javax.swing.JFrame {
     public static void readFile() {
         try {
             InputStream in = SecondWindow.class.getResourceAsStream("questions.txt");
+            InputStream in2 = SecondWindow.class.getResourceAsStream("feedbacks.txt");
             Scanner scanner = new Scanner(in);
-
+            Scanner scanner2 = new Scanner(in2);
             while (scanner.hasNextLine()) {
                 //a placeholder Question object that we'll store all the scanner.nextLine information in
                 Question q = new Question();
@@ -48,9 +56,13 @@ public class SecondWindow extends javax.swing.JFrame {
                 //6th line: answer
                 q.setAnswer(scanner.nextLine());
                 //add this Question object to the array list. Now it stores the question and its corresponding options and answer
-                questionList.add(q);   
+                questionList.add(q);
                 //and so it loops...
-            } 
+            }
+            //go through feedback file and add to feedback list
+            for (int i = 0; i < feedbackList.length; i++) {
+                feedbackList[i] = scanner2.nextLine();
+            }
         } catch (Exception e) {
             System.out.println("Error" + e);
         }
@@ -81,26 +93,41 @@ public class SecondWindow extends javax.swing.JFrame {
         } else if (btnD.isSelected()) {
             //userAns[qNum] = btnD.getText();
             userAns[qNum] = btnDText;
-        } 
-  
+        }
+
         //System.out.println("correct answer " + questionList.get(qNum - 1).getAnswer());
         //System.out.println("user answer " + userAns[qNum]);
         //System.out.println("num " + qNum);
-
         //WHY IS IT QNUM - 1??????
         if (questionList.get(qNum - 1).getAnswer().equals(userAns[qNum])) {
             //the score goes up
             score++;
+        } else {
+            wrongQ.add(questionList.get(qNum - 1));
+            wrongAns.add(userAns[qNum]);
         }
 
         btnAText = btnA.getText();
         btnBText = btnB.getText();
         btnCText = btnC.getText();
-        btnDText = btnD.getText();       
+        btnDText = btnD.getText();
     }
     
-    public void displayResults() {
+    public String displayResults() {
         //TO DO: DISPLAY FEEDBACK
+        String msg = "Questions you got wrong:\n";
+        if(score == 10){
+            msg = "Great job! You got all 10 questions correct";
+        }else{
+            for (int i = 0; i < wrongAns.size(); i++) {
+            msg+= wrongQ.get(i).getQuestion()+"\n you chose: "+wrongAns.get(i)
+                    +"\nThe correct answer: "+wrongQ.get(i).getAnswer()
+                    +"\n"+feedbackList[questionList.indexOf(wrongQ.get(i))]+"\n\n"
+                    ;
+            }
+        }
+
+        return msg;
     }
 
     
@@ -200,7 +227,7 @@ public class SecondWindow extends javax.swing.JFrame {
     
     //what happens when the done button is pressed
     private void btnDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoneActionPerformed
-        
+ 
         //first make sure qNum is smaller than the # of questions (10) 
         //because if it's greater and we run the following code we'll get an outOfBounds error
         if (qNum < questionList.size()) {
@@ -210,6 +237,10 @@ public class SecondWindow extends javax.swing.JFrame {
                 //display the first question
                 displayQuestion(qNum);
                 qNum++;
+                
+                // Clear any previous selections
+                buttonGroup1.clearSelection(); 
+                
                 //set question and all options visible once the quiz starts
                 lblQuestion.setVisible(true);
                 btnA.setVisible(true);
@@ -222,7 +253,7 @@ public class SecondWindow extends javax.swing.JFrame {
             calcScore();
             
             //show the score (this is used to debug)
-            JOptionPane.showMessageDialog(null, score);
+            JOptionPane.showMessageDialog(null, "Your score: "+score+"\n"+displayResults());
             //TO DO: SHOW THE RESULTS & FEEDBACK
             
             //Go back to main window (I have no clue what I did, but it works so yay)            
@@ -238,6 +269,14 @@ public class SecondWindow extends javax.swing.JFrame {
             btnDone.setText("Start Quiz!");
             qNum = 0;
             score = 0;
+            Arrays.fill(userAns, null);  // Reset userAns array
+
+            wrongAns.clear();  // Clear the wrongAns list
+            wrongQ.clear();  // Clear the wrongQ list
+            
+            System.out.println(wrongAns.size());
+            System.out.println(wrongQ.size());
+            
             lblQuestion.setVisible(false);
             btnA.setVisible(false);
             btnB.setVisible(false);
